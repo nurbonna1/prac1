@@ -13,5 +13,15 @@ CHIP Xor {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    // ab = a NAND b
+    Nand(a=a, b=b, out=ab);
+
+    // aNandAb = a NAND ab => simulates a AND not b
+    Nand(a=a, b=ab, out=aNandAb);
+
+    // bNandAb = b NAND ab => simulates b AND not a
+    Nand(a=b, b=ab, out=bNandAb);
+
+    // Final XOR = NAND(a AND not b, b AND not a)
+    Nand(a=aNandAb, b=bNandAb, out=out);
 }
