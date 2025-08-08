@@ -14,5 +14,8 @@ CHIP And {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    // Step 1: NAND a and b => NOT (a AND b)
+    Nand(a=a, b=b, out=abNand);
+    // Step 2: NAND the result with itself => NOT(NOT(a AND b)) = a AND b
+    Nand(a=abNand, b=abNand, out=out);
 }
